@@ -42,16 +42,16 @@ vector<vector<int>> cmove(vector<int> arr){
 	return to_return;
 }
 vector<int> eli(vector<int> arr){
-	vector<int>narr(arr);
-	while(true){
-		for(int i=1;i<4;i++){
-			if(arr[i-1]==0){arr[i-1]=arr[i];arr[i]=0;}
-			if(arr[i-1]==arr[i]){arr[i-1]+=arr[i];arr[i]=0;}
-		}
-		if(arr==narr)break;
-		narr=arr;
+	vector<int>narr;
+	vector<int>tarr;
+	for(int i=0;i<4;i++)if(arr[i]!=0)narr.push_back(arr[i]);
+	int nsize=narr.size();
+	for(int i=0;i<nsize;i++){
+		if(i!=nsize-1&&narr[i]==narr[i+1]){tarr.push_back(narr[i]+narr[i+1]);i+=1;}
+		else tarr.push_back(narr[i]);
 	}
-	return arr;
+	for(int i=tarr.size();i<4;i++)tarr.push_back(0);
+	return tarr;
 }
 vector<vector<int>> mmove(vector<int> arr){
 	vector<vector<int>> to_return;
